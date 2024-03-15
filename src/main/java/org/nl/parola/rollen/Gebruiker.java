@@ -16,8 +16,8 @@ public class Gebruiker {
         this.isGevorderd = "Amateur";
     }
 
-    public void reduceerCredits(Parola parola){
-        this.credits = credits - parola.kostenQuiz;
+    public void reduceerCredits(){
+        this.credits = credits - 40;
     }
     public String getEmail() {
         return email;
