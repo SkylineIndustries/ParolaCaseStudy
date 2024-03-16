@@ -1,12 +1,6 @@
 
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-S
-#src/main/java/org/example/Main.java,0\b\0ba1b9c7a4878802f938e331cc2d8a042087ec6b
-U
-%src/main/java/org/nl/parola/Main.java,7\e\7e48fae4908ee3c92303b2cc77fe973d072dae2f
-Z
-*src/main/java/org/nl/parola/Gebruiker.java,3\b\3bb0aedf3c074b592075fbd9bf22c757885e0e60
 b
 2src/main/java/org/nl/parola/antwoord/Antwoord.java,e\f\ef3d7475495066b6886f257c8eb7d7f4dab89e2e
 d
@@ -51,3 +45,7 @@ Q.idea/sonarlint/securityhotspotstore/3/b/3bb0aedf3c074b592075fbd9bf22c757885e0e
 Q.idea/sonarlint/securityhotspotstore/7/e/7e48fae4908ee3c92303b2cc77fe973d072dae2f,f\1\f1e4f0c7fb02174e85856ae42296aad3d068be3e
 w
 G.idea/sonarlint/issuestore/e/f/ef3d7475495066b6886f257c8eb7d7f4dab89e2e,a\7\a7e963e39385a02869282876ea756a4e71914520
+T
+$src/main/java/org/nl/ParolaMain.java,5\b\5b1714d7a8501798f3aa4d46c2a45a4cdd41c0e3
+Z
+*src/main/java/org/nl/ParolaController.java,4\7\47b3c2fbd96c2c1cc25edddf76d32c4bfc0e6fde

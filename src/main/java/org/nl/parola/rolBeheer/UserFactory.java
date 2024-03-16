@@ -1,6 +1,13 @@
 package org.nl.parola.rolBeheer;
 
-public interface UserFactory {
+public abstract class UserFactory {
     
-    public void createRol(String email, int credits);
+    public abstract String getEmail();
+
+    public abstract String getPassword();
+
+    @Override
+    public String toString() {
+        return "UserFactory{" + "email=" + getEmail() + ", password=" + getPassword() + '}';
+    }
 }
