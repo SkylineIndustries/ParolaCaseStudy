@@ -1,16 +1,12 @@
 package org.nl.parola.parola;
 
-import org.nl.parola.antwoord.Antwoord;
-import org.nl.parola.rollen.Gebruiker;
-import org.nl.parola.quiz.Quiz;
-import org.nl.parola.testcode.ScoreStrategyA;
-import org.nl.parola.testcode.ScoreStrategyB;
+import org.nl.parola.rolBeheer.DefaultUserFactory;
+import org.nl.parola.rolBeheer.UserFactory;
 
-public interface Parola {
+public class parola {
+    DefaultUserFactory userFactory = new DefaultUserFactory();
 
-
-
-    int geefWoord(String woord);
-    char[] beantwoordVraag(Antwoord antwoord);
-
+    public UserFactory registerUser(String email, String password) {
+        return registerUser(email, password);
+    }
 }
