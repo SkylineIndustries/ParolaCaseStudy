@@ -1,7 +1,5 @@
 package org.nl.parola.rolBeheer;
 
-import org.nl.parola.gebruiker.Gebruiker;
-
 public class DefaultUserFactory {
 
         private static final int credits = 40;

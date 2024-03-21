@@ -1,15 +1,23 @@
 package org.nl;
 
-public class ParolaController {
+import org.nl.parola.quiz.Quiz;
+import org.nl.parola.rollen.User;
+import org.nl.parola.testcode.ScoreStrategyA;
 
+public class ParolaController {
+    private static ParolaController instance;
+    Quiz quiz;
     public static ParolaController getInstance() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getInstance'");
+        if(instance == null){
+            instance = new ParolaController();
+        }
+        return instance;
     }
 
     public void startQuiz(String playername) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'startQuiz'");
+        this.quiz = new Quiz(new User(playername, playername));
+        quiz.setTime(100);
+        // throw new UnsupportedOperationException("Unimplemented method 'startQuiz'");
     }
 
     public char[] nextQuestion(String playername) {
@@ -33,8 +41,7 @@ public class ParolaController {
     }
 
     public int calculateScore(String playername, String word) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'calculateScore'");
+        return quiz.giveWord(playername ,word);
     }
 
 }

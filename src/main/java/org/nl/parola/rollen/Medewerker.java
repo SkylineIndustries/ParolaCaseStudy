@@ -1,4 +1,4 @@
-package org.nl.parola.gebruiker;
+package org.nl.parola.rollen;
 
 import org.nl.parola.rolBeheer.UserFactory;
 

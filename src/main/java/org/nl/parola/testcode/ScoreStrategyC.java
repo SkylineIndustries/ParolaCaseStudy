@@ -1,10 +1,10 @@
 package org.nl.parola.testcode;
 
-public class ScoreStrategyB implements IScoreCalculation {
-    private static ScoreStrategyB instance;
-    public static ScoreStrategyB getInstance(){
+public class ScoreStrategyC implements IScoreCalculation {
+    private static ScoreStrategyC instance;
+    public static ScoreStrategyC getInstance(){
         if(instance == null){
-            instance = new ScoreStrategyB();
+            instance = new ScoreStrategyC();
         }
         return instance;
     }

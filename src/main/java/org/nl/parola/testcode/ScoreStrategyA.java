@@ -1,12 +1,24 @@
 package org.nl.parola.testcode;
 
-public class ScoreStrategyA implements IScoreBerekening{
+import java.lang.annotation.Inherited;
 
-    public ScoreStrategyA(){
-
+public class ScoreStrategyA implements IScoreCalculation {
+    private static ScoreStrategyA instance;
+    public static ScoreStrategyA getInstance(){
+        if(instance == null){
+            instance = new ScoreStrategyA();
+        }
+        return instance;
     }
+
+    /**
+     * {@inheritDoc}
+     * Calculates the score for an amateur
+     */
     @Override
-    public int berekenScore(int tijd) {
-        return tijd + (tijd *2);
+    public int calculateScore(int time, String word) {
+        int score = word.length() * 100;
+        score = score - time /5;
+        return score;
     }
 }

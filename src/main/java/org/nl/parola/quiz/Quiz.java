@@ -1,50 +1,56 @@
 package org.nl.parola.quiz;
 
-import org.nl.parola.antwoord.Antwoord;
-import org.nl.parola.parola.Parola;
-import org.nl.parola.rollen.Gebruiker;
-import org.nl.parola.testcode.IScoreBerekening;
+import org.nl.parola.rollen.User;
+import org.nl.parola.testcode.IScoreCalculation;
 import org.nl.parola.testcode.ScoreStrategyA;
 import org.nl.parola.testcode.ScoreStrategyB;
+import org.nl.parola.testcode.ScoreStrategyC;
 
-import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Quiz implements Parola {
+public class Quiz {
 
-    private Time tijd;
-    public Gebruiker gebruiker;
+    private int time;
+    public List<User> user = new ArrayList<>();
 
-    public Quiz(Gebruiker gebruiker) {
-        this.gebruiker = gebruiker;
-    }
-
-    @Override
-    public int geefWoord(String woord) {
-
-        gebruiker.getIsGevorderd();
-        ScoreStrategyA scoreStrategyA = new ScoreStrategyA();
-        ScoreStrategyB scoreStrategyB = new ScoreStrategyB();
-        int score = berekenScore(scoreStrategyB);
-        System.out.println(score);
-        return 0;
-    }
-
-    @Override
-    public char[] beantwoordVraag(Antwoord antwoord) {
-        return new char[0];
+    public Quiz(User user) {
+        this.user.add(user);
     }
 
 
-    private int berekenScore(IScoreBerekening scoreBerekening) {
-        int tijd = 10;
-        return scoreBerekening.berekenScore(tijd);
+    public int giveWord(String playerName, String word) {
+        String playerDifficulty = "";
+        for (User userQuiz : this.user
+        ) {
+            if (userQuiz.getEmail().equals(playerName)) {
+                playerDifficulty = userQuiz.getIsGevorderd();
+            }
+        }
+        return calculateScore(deterimeScoreStrategy(playerDifficulty), word);
     }
 
-    public void setTijd(Time tijd) {
-        this.tijd = tijd;
+
+    private IScoreCalculation deterimeScoreStrategy(String playerDifficulty){
+        switch (playerDifficulty){
+            case "Amateur":
+                return ScoreStrategyA.getInstance();
+            case "Geavanceerd":
+                return ScoreStrategyB.getInstance();
+            default:
+                return ScoreStrategyC.getInstance();
+        }
     }
 
-    public Time getTijd() {
-        return tijd;
+    private int calculateScore(IScoreCalculation scoreCalculation, String word) {
+        return scoreCalculation.calculateScore(getTime(), word);
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
+    public int getTime() {
+        return time;
     }
 }

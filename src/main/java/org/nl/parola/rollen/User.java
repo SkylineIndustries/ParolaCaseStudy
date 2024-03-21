@@ -3,13 +3,13 @@ package org.nl.parola.rollen;
 import org.nl.parola.parola.Parola;
 
 
-public class Gebruiker {
+public class User {
     private String email;
     private String wachtwoord;
     private int credits;
     private String isGevorderd;
 
-    public Gebruiker(String email, String wachtwoord) {
+    public User(String email, String wachtwoord) {
         this.email = email;
         this.wachtwoord = wachtwoord;
         this.credits = 1000;
