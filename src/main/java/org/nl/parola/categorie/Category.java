@@ -1,9 +1,9 @@
 package org.nl.parola.categorie;
 
-public class Categorie {
+public class Category {
     private String email;
 
-    private String wachtwoord;
+    private String password;
 
     private String credits;
 
@@ -23,11 +23,11 @@ public class Categorie {
         this.email = email;
     }
 
-    public String getWachtwoord() {
-        return wachtwoord;
+    public String getPassword() {
+        return password;
     }
 
-    public void setWachtwoord(String wachtwoord) {
-        this.wachtwoord = wachtwoord;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
