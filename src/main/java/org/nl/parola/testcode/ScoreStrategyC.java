@@ -10,12 +10,12 @@ public class ScoreStrategyC implements IScoreCalculation {
     }
     /**
      * {@inheritDoc}
-     * Calculates the score for an advanced player
+     * Calculates the score for a beginning player
      */
     @Override
     public int calculateScore(int time, String word) {
-        int score = word.length() * 100;
-        score = score - time;
+        int score = word.length() * 110;
+        score = score - time/10;
         return score;
     }
 }
