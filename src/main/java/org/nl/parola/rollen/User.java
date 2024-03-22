@@ -1,19 +1,17 @@
 package org.nl.parola.rollen;
 
-import org.nl.parola.parola.Parola;
-
 
 public class User {
     private String email;
-    private String wachtwoord;
+    private String password;
     private int credits;
-    private String isGevorderd;
+    private String isAdvanced;
 
     public User(String email, String wachtwoord) {
         this.email = email;
-        this.wachtwoord = wachtwoord;
+        this.password = wachtwoord;
         this.credits = 1000;
-        this.isGevorderd = "Amateur";
+        this.isAdvanced = "Amateur";
     }
 
     public void reduceerCredits(){
@@ -27,12 +25,12 @@ public class User {
         this.email = email;
     }
 
-    public String getWachtwoord() {
-        return wachtwoord;
+    public String getPassword() {
+        return password;
     }
 
-    public void setWachtwoord(String wachtwoord) {
-        this.wachtwoord = wachtwoord;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getCredits() {
@@ -43,11 +41,11 @@ public class User {
         this.credits = credits;
     }
 
-    public String getIsGevorderd() {
-        return isGevorderd;
+    public String getIsAdvanced() {
+        return isAdvanced;
     }
 
-    public void setIsGevorderd(String isGevorderd) {
-        this.isGevorderd = isGevorderd;
+    public void setIsAdvanced(String isAdvanced) {
+        this.isAdvanced = isAdvanced;
     }
 }

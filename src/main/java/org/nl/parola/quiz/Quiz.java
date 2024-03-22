@@ -18,13 +18,18 @@ public class Quiz {
         this.user.add(user);
     }
 
-
-    public int giveWord(String playerName, String word) {
+    /**
+     * This method determines what the status of the user is and calculates a score based on that information.
+     * @param playerName name of the user.
+     * @param word word that has been given as an answer.
+     * @return the score that the user got.
+     */
+    public int calculateScore(String playerName, String word) {
         String playerDifficulty = "";
         for (User userQuiz : this.user
         ) {
             if (userQuiz.getEmail().equals(playerName)) {
-                playerDifficulty = userQuiz.getIsGevorderd();
+                playerDifficulty = userQuiz.getIsAdvanced();
             }
         }
         return calculateScore(deterimeScoreStrategy(playerDifficulty), word);
