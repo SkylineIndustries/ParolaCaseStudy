@@ -1,19 +1,15 @@
 package org.nl.parola.antwoord;
 
 public class Answer {
-    private boolean isCorrect;
-    private String name;
 
-    public Answer(String name) {
-        this.name = name;
+    String answer;
+
+    public Answer(String answer) {
+        this.answer = answer;
     }
 
-    public boolean isCorrect() {
-        return isCorrect;
-    }
-
-    public void setCorrect(boolean correct) {
-        isCorrect = correct;
+    public boolean checkAnswer(String answer) {
+        return this.answer.equalsIgnoreCase(answer);
     }
 
 }

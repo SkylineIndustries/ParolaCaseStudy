@@ -1,14 +1,20 @@
 package org.nl.parola.vraag;
 
+import org.nl.parola.antwoord.Answer;
+
+import java.util.List;
+
 public abstract class Question {
 
-    private boolean isMultipleChoice;
+    String question;
+    private List<Answer> answers;
 
-    public boolean isMultipleChoice() {
-        return isMultipleChoice;
+
+    public char checkAnswer(String answer) {
+        return 0;
     }
 
-    public void setMultipleChoice(boolean multipleChoice) {
-        isMultipleChoice = multipleChoice;
+    public String getQuestion() {
+        return question;
     }
 }
