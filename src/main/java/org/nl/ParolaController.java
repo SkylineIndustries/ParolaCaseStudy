@@ -2,7 +2,6 @@ package org.nl;
 
 import org.nl.parola.quiz.Quiz;
 import org.nl.parola.rollen.User;
-import org.nl.parola.testcode.ScoreStrategyA;
 
 public class ParolaController {
     private static ParolaController instance;
@@ -41,7 +40,7 @@ public class ParolaController {
     }
 
     public int calculateScore(String playername, String word) {
-        return quiz.giveWord(playername ,word);
+        return quiz.calculateScore(playername ,word);
     }
 
 }
