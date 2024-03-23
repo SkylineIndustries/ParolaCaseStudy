@@ -1,5 +1,7 @@
 package org.nl.parola.quiz;
 
+import org.nl.parola.External_Software.External_Software;
+import org.nl.parola.External_Software.MockExternalSoftware;
 import org.nl.parola.rollen.User;
 import org.nl.parola.testcode.IScoreCalculation;
 import org.nl.parola.testcode.ScoreStrategyA;
@@ -32,19 +34,25 @@ public class Quiz {
                 playerDifficulty = userQuiz.getIsAdvanced();
             }
         }
+        word = checkLegitimateWord(word);
         return calculateScore(deterimeScoreStrategy(playerDifficulty), word);
+    }
+
+    private String checkLegitimateWord(String word) {
+        External_Software external_software = new MockExternalSoftware();
+        if (!external_software.isCorrectWord(word)) {
+            return "";
+        }
+        return word;
     }
 
 
     private IScoreCalculation deterimeScoreStrategy(String playerDifficulty){
-        switch (playerDifficulty){
-            case "Amateur":
-                return ScoreStrategyA.getInstance();
-            case "Geavanceerd":
-                return ScoreStrategyB.getInstance();
-            default:
-                return ScoreStrategyC.getInstance();
-        }
+        return switch (playerDifficulty) {
+            case "Amateur" -> ScoreStrategyA.getInstance();
+            case "Geavanceerd" -> ScoreStrategyB.getInstance();
+            default -> ScoreStrategyC.getInstance();
+        };
     }
 
     private int calculateScore(IScoreCalculation scoreCalculation, String word) {

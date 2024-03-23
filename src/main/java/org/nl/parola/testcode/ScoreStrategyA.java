@@ -1,7 +1,5 @@
 package org.nl.parola.testcode;
 
-import java.lang.annotation.Inherited;
-
 public class ScoreStrategyA implements IScoreCalculation {
     private static ScoreStrategyA instance;
     public static ScoreStrategyA getInstance(){
@@ -18,7 +16,7 @@ public class ScoreStrategyA implements IScoreCalculation {
     @Override
     public int calculateScore(int time, String word) {
         int score = word.length() * 100;
-        score = score - time /5;
+        score = score - time/5;
         return score;
     }
 }
