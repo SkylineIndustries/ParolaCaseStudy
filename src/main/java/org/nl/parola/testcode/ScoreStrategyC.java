@@ -16,6 +16,6 @@ public class ScoreStrategyC implements IScoreCalculation {
     public int calculateScore(int time, String word) {
         int score = word.length() * 110;
         score = score - time/10;
-        return score;
+        return Math.max(score, 0);
     }
 }

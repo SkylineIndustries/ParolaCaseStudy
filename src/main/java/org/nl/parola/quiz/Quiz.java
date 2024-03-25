@@ -17,13 +17,51 @@ import java.util.regex.Pattern;
 public class Quiz {
     public List<User> user = new ArrayList<>();
     private int answerCount = 0;
-    StringBuilder letters = new StringBuilder();
+    private StringBuilder letters = new StringBuilder();
     private final List<Question> questions;
-    Question currentQuestion;
+    private Question currentQuestion;
+    private int questionsCorrect;
 
     public Quiz(User user, List<Question> questions) {
         this.user.add(user);
         this.questions = questions;
+    }
+    public void startQuiz(String playername) {
+        Timer.startTimer();
+        User currentUser = getCurrentUser(playername);
+        if (currentUser == null) {
+            return;
+        }
+        currentUser.reduceerCredits();
+    }
+
+    public String nextQuestion(String playername) {
+        if (getCurrentUser(playername) != null) {
+            currentQuestion = questions.get(answerCount);
+            return currentQuestion.getQuestion();
+        }
+        return "";
+    }
+
+    public void processAnswer(String playername, String answer) {
+        if (getCurrentUser(playername) != null) {
+            letters.append(currentQuestion.checkAnswer(answer));
+            answerCount++;
+        }
+    }
+
+    public boolean quizFinished(String playername) {
+        if (getCurrentUser(playername) != null) {
+            return answerCount == 8;
+        }
+        return false;
+    }
+
+    public String getLettersForRightAnswers(String playername) {
+        if (getCurrentUser(playername) != null) {
+            return letters.toString().replaceAll("\\s", "");
+        }
+        return "";
     }
 
     /**
@@ -54,7 +92,6 @@ public class Quiz {
         return word;
     }
 
-
     private IScoreCalculation deterimeScoreStrategy(String playerDifficulty) {
         return switch (playerDifficulty) {
             case "Amateur" -> ScoreStrategyA.getInstance();
@@ -65,44 +102,6 @@ public class Quiz {
 
     private int calculateScore(IScoreCalculation scoreCalculation, String word) {
         return scoreCalculation.calculateScore(getTime(), word);
-    }
-
-    public void processAnswer(String playername, String answer) {
-        if (getCurrentUser(playername) != null) {
-            letters.append(currentQuestion.checkAnswer(answer));
-            answerCount++;
-        }
-    }
-
-    public boolean quizFinished(String playername) {
-        if (getCurrentUser(playername) != null) {
-            return answerCount == 8;
-        }
-        return false;
-    }
-
-    public String getLettersForRightAnswers(String playername) {
-        if (getCurrentUser(playername) != null) {
-            return letters.toString().replaceAll("\\s", "");
-        }
-        return "";
-    }
-
-    public String nextQuestion(String playername) {
-        if (getCurrentUser(playername) != null) {
-            currentQuestion = questions.get(answerCount);
-            return currentQuestion.getQuestion();
-        }
-        return "";
-    }
-
-    public void startQuiz(String playername) {
-        Timer.startTimer();
-        User currentUser = getCurrentUser(playername);
-        if (currentUser == null) {
-            return;
-        }
-        currentUser.reduceerCredits();
     }
 
     /**
