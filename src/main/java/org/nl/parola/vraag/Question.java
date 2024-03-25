@@ -1,6 +1,6 @@
 package org.nl.parola.vraag;
 
-import org.nl.parola.antwoord.Answer;
+import org.nl.parola.vraag.antwoord.Answer;
 
 import java.util.List;
 

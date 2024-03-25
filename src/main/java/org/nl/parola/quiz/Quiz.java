@@ -2,6 +2,7 @@ package org.nl.parola.quiz;
 
 import org.nl.parola.External_Software.External_Software;
 import org.nl.parola.External_Software.MockExternalSoftware;
+import org.nl.parola.MOCKDATA.Timer;
 import org.nl.parola.rollen.User;
 import org.nl.parola.testcode.IScoreCalculation;
 import org.nl.parola.testcode.ScoreStrategyA;
@@ -14,18 +15,10 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class Quiz {
-
-    private int time;
     public List<User> user = new ArrayList<>();
-
-    private boolean isFinished = false;
-
     private int answerCount = 0;
-
     StringBuilder letters = new StringBuilder();
-
     private final List<Question> questions;
-
     Question currentQuestion;
 
     public Quiz(User user, List<Question> questions) {
@@ -42,13 +35,13 @@ public class Quiz {
      */
     public int calculateScore(String playerName, String word) {
         String playerDifficulty = "";
-        for (User userQuiz : this.user
-        ) {
-            if (userQuiz.getEmail().equals(playerName)) {
-                playerDifficulty = userQuiz.getIsAdvanced();
-            }
+        User currentUser = getCurrentUser(playerName);
+        if (currentUser == null) {
+            return 0;
         }
+        playerDifficulty = currentUser.getIsAdvanced();
         word = checkLegitimateWord(word);
+        Timer.stopTimer();
         return calculateScore(deterimeScoreStrategy(playerDifficulty), word);
     }
 
@@ -62,7 +55,7 @@ public class Quiz {
     }
 
 
-    private IScoreCalculation deterimeScoreStrategy(String playerDifficulty){
+    private IScoreCalculation deterimeScoreStrategy(String playerDifficulty) {
         return switch (playerDifficulty) {
             case "Amateur" -> ScoreStrategyA.getInstance();
             case "Geavanceerd" -> ScoreStrategyB.getInstance();
@@ -74,46 +67,63 @@ public class Quiz {
         return scoreCalculation.calculateScore(getTime(), word);
     }
 
-    public void setTime(int time) {
-        this.time = time;
-    }
-
-    public int getTime() {
-        return time;
-    }
-
     public void processAnswer(String playername, String answer) {
-        for (User userQuiz : this.user
-        ) {
-            if (userQuiz.getEmail().equals(playername)) {
-                letters.append(currentQuestion.checkAnswer(answer));
-                answerCount++;
-            }
+        if (getCurrentUser(playername) != null) {
+            letters.append(currentQuestion.checkAnswer(answer));
+            answerCount++;
         }
     }
 
-    public boolean quizFinished(String playerName) {
-        for (User userQuiz : this.user
-        ) {
-            if (userQuiz.getEmail().equals(playerName)) {
-                return answerCount == 8;
-            }
+    public boolean quizFinished(String playername) {
+        if (getCurrentUser(playername) != null) {
+            return answerCount == 8;
         }
         return false;
     }
 
     public String getLettersForRightAnswers(String playername) {
-        for (User userQuiz : this.user
-        ) {
-            if (userQuiz.getEmail().equals(playername)) {
-                return letters.toString().replaceAll("\\s", "");
-            }
+        if (getCurrentUser(playername) != null) {
+            return letters.toString().replaceAll("\\s", "");
         }
         return "";
     }
 
-    public String nextQuestion() {
-        currentQuestion = questions.get(answerCount);
-        return currentQuestion.getQuestion();
+    public String nextQuestion(String playername) {
+        if (getCurrentUser(playername) != null) {
+            currentQuestion = questions.get(answerCount);
+            return currentQuestion.getQuestion();
+        }
+        return "";
+    }
+
+    public void startQuiz(String playername) {
+        Timer.startTimer();
+        User currentUser = getCurrentUser(playername);
+        if (currentUser == null) {
+            return;
+        }
+        currentUser.reduceerCredits();
+    }
+
+    /**
+     * This method returns the current user of the quiz. If no user has been found, it returns null.
+     * This should be handled using exception handling, however due to the scope of the project/case study, this is not needed.
+     * You could also add the player to the quiz if a player is not found, but since there is no DB, this will not be done.
+     *
+     * @param playername name of the current player of the quiz.
+     * @return the user from the list of users that plays or has played the quiz.
+     */
+    private User getCurrentUser(String playername) {
+        for (User userQuiz : this.user
+        ) {
+            if (userQuiz.getEmail().equals(playername)) {
+                return userQuiz;
+            }
+        }
+        return null;
+    }
+
+    public int getTime() {
+        return Timer.getTimeDifference();
     }
 }

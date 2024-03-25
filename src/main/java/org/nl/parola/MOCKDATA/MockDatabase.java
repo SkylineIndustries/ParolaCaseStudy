@@ -1,6 +1,6 @@
 package org.nl.parola.MOCKDATA;
 
-import org.nl.parola.antwoord.Answer;
+import org.nl.parola.vraag.antwoord.Answer;
 import org.nl.parola.quiz.Quiz;
 import org.nl.parola.rollen.User;
 import org.nl.parola.vraag.MultipleChoiceQuestion;

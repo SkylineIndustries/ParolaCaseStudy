@@ -15,11 +15,11 @@ public class ParolaController {
 
     public void startQuiz(String playername) {
         this.quiz = MockDatabase.getQuiz(playername);
-        quiz.setTime(100);
+        quiz.startQuiz(playername);
     }
 
     public String nextQuestion(String playername) {
-        return quiz.nextQuestion();
+        return quiz.nextQuestion(playername);
     }
 
     public void processAnswer(String playername, String answer) {
