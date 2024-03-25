@@ -58,8 +58,10 @@ public class Quiz {
     }
 
     public String getLettersForRightAnswers(String playername) {
+        String lettersQuiz = letters.toString().replaceAll("\\s", "");
+        questionsCorrect = lettersQuiz.length();
         if (getCurrentUser(playername) != null) {
-            return letters.toString().replaceAll("\\s", "");
+            return lettersQuiz;
         }
         return "";
     }
@@ -101,7 +103,7 @@ public class Quiz {
     }
 
     private int calculateScore(IScoreCalculation scoreCalculation, String word) {
-        return scoreCalculation.calculateScore(getTime(), word);
+        return scoreCalculation.calculateScore(getTime(), word, questionsCorrect);
     }
 
     /**

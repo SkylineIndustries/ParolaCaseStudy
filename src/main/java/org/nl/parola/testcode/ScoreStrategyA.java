@@ -14,8 +14,9 @@ public class ScoreStrategyA implements IScoreCalculation {
      * Calculates the score for an amateur
      */
     @Override
-    public int calculateScore(int time, String word) {
-        int score = word.length() * 100;
+    public int calculateScore(int time, String word, int questionsCorrect) {
+        int score = word.length() * 75;
+        score = score + questionsCorrect * 75;
         score = score - time/5;
         return Math.max(score, 0);
     }
