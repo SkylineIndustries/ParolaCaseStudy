@@ -1,7 +1,7 @@
 package org.nl;
 
+import org.nl.parola.MOCKDATA.MockDatabase;
 import org.nl.parola.quiz.Quiz;
-import org.nl.parola.rollen.User;
 
 public class ParolaController {
     private static ParolaController instance;
@@ -14,33 +14,27 @@ public class ParolaController {
     }
 
     public void startQuiz(String playername) {
-        this.quiz = new Quiz(new User(playername, playername));
-        quiz.setTime(100);
-        // throw new UnsupportedOperationException("Unimplemented method 'startQuiz'");
+        this.quiz = MockDatabase.getQuiz(playername);
+        quiz.startQuiz(playername);
     }
 
-    public char[] nextQuestion(String playername) {
-        char[] result = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
-        return result;
+    public String nextQuestion(String playername) {
+        return quiz.nextQuestion(playername);
     }
 
     public void processAnswer(String playername, String answer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'processAnswer'");
+        this.quiz.processAnswer(playername, answer);
     }
 
     public boolean quizFinished(String playername) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'quizFinished'");
+        return quiz.quizFinished(playername);
     }
 
     public String getLettersForRightAnswers(String playername) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getLettersForRightAnswers'");
+        return quiz.getLettersForRightAnswers(playername);
     }
 
     public int calculateScore(String playername, String word) {
         return quiz.calculateScore(playername ,word);
     }
-
 }

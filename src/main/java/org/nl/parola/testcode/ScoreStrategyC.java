@@ -13,9 +13,10 @@ public class ScoreStrategyC implements IScoreCalculation {
      * Calculates the score for a beginning player
      */
     @Override
-    public int calculateScore(int time, String word) {
+    public int calculateScore(int time, String word, int questionsCorrect) {
         int score = word.length() * 110;
+        score = score + questionsCorrect * 100;
         score = score - time/10;
-        return score;
+        return Math.max(score, 0);
     }
 }
