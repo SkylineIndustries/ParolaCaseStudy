@@ -8,12 +8,10 @@ import java.util.List;
 public class MultipleChoiceQuestion extends Question {
 
     String question;
-    char letter;
     List<Answer> answers;
 
-    public MultipleChoiceQuestion(String question, char letter, List<Answer> answers) {
+    public MultipleChoiceQuestion(String question, List<Answer> answers) {
         this.question = question;
-        this.letter = letter;
         this.answers = answers;
     }
 
@@ -21,7 +19,7 @@ public class MultipleChoiceQuestion extends Question {
     public char checkAnswer(String answerGiven) {
         for (Answer answer : answers
         ) {
-            return answer.checkAnswer(answerGiven) ? letter : ' ';
+            return answer.checkAnswer(answerGiven) ? answerGiven.charAt(0) : ' ';
         }
         return ' ';
     }
