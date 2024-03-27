@@ -1,14 +1,14 @@
-package org.nl.parola.quiz;
+package org.nl.parola.Quiz;
 
 import org.nl.parola.External_Software.External_Software;
 import org.nl.parola.External_Software.MockExternalSoftware;
 import org.nl.parola.MOCKDATA.Timer;
-import org.nl.parola.rollen.User;
-import org.nl.parola.testcode.IScoreCalculation;
-import org.nl.parola.testcode.ScoreStrategyA;
-import org.nl.parola.testcode.ScoreStrategyB;
-import org.nl.parola.testcode.ScoreStrategyC;
-import org.nl.parola.vraag.Question;
+import org.nl.parola.Roles.User;
+import org.nl.parola.Score.IScoreCalculation;
+import org.nl.parola.Score.ScoreStrategyA;
+import org.nl.parola.Score.ScoreStrategyB;
+import org.nl.parola.Score.ScoreStrategyC;
+import org.nl.parola.Question.Question;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +26,7 @@ public class Quiz {
         this.user.add(user);
         this.questions = questions;
     }
+
     public void startQuiz(String playername) {
         Timer.startTimer();
         User currentUser = getCurrentUser(playername);

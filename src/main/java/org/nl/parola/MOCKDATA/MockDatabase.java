@@ -1,11 +1,11 @@
 package org.nl.parola.MOCKDATA;
 
-import org.nl.parola.vraag.antwoord.Answer;
-import org.nl.parola.quiz.Quiz;
-import org.nl.parola.rollen.User;
-import org.nl.parola.vraag.MultipleChoiceQuestion;
-import org.nl.parola.vraag.Question;
-import org.nl.parola.vraag.ShortAnswerQuestion;
+import org.nl.parola.Question.Answer.Answer;
+import org.nl.parola.Quiz.Quiz;
+import org.nl.parola.Roles.User;
+import org.nl.parola.Question.MultipleChoiceQuestion;
+import org.nl.parola.Question.Question;
+import org.nl.parola.Question.ShortAnswerQuestion;
 
 import java.util.List;
 

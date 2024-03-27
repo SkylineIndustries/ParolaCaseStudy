@@ -1,4 +1,4 @@
-package org.nl.parola.testcode;
+package org.nl.parola.Score;
 
 public class ScoreStrategyC implements IScoreCalculation {
     private static ScoreStrategyC instance;

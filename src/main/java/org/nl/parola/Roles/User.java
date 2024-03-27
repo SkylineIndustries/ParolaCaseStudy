@@ -1,4 +1,4 @@
-package org.nl.parola.rollen;
+package org.nl.parola.Roles;
 
 
 public class User {
@@ -14,9 +14,10 @@ public class User {
         this.isAdvanced = "Amateur";
     }
 
-    public void reduceerCredits(){
+    public void reduceerCredits() {
         this.credits = credits - 40;
     }
+
     public String getEmail() {
         return email;
     }

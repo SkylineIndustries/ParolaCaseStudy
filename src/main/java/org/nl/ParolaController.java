@@ -1,13 +1,14 @@
 package org.nl;
 
 import org.nl.parola.MOCKDATA.MockDatabase;
-import org.nl.parola.quiz.Quiz;
+import org.nl.parola.Quiz.Quiz;
 
 public class ParolaController {
     private static ParolaController instance;
     Quiz quiz;
+
     public static ParolaController getInstance() {
-        if(instance == null){
+        if (instance == null) {
             instance = new ParolaController();
         }
         return instance;
@@ -35,6 +36,6 @@ public class ParolaController {
     }
 
     public int calculateScore(String playername, String word) {
-        return quiz.calculateScore(playername ,word);
+        return quiz.calculateScore(playername, word);
     }
 }
