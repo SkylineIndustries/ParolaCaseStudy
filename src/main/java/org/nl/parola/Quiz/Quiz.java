@@ -62,7 +62,7 @@ public class Quiz {
         String lettersQuiz = letters.toString().replaceAll("\\s", "");
         questionsCorrect = lettersQuiz.length();
         if (getCurrentUser(playername) != null) {
-            return lettersQuiz;
+            return lettersQuiz.toLowerCase();
         }
         return "";
     }
