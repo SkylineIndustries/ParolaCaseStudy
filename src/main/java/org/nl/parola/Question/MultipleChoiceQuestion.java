@@ -1,19 +1,17 @@
-package org.nl.parola.vraag;
+package org.nl.parola.Question;
 
-import org.nl.parola.vraag.antwoord.Answer;
+import org.nl.parola.Question.Answer.Answer;
 
 import java.util.List;
 
-public class ShortAnswerQuestion extends Question {
 
-    char letter;
+public class MultipleChoiceQuestion extends Question {
+
     String question;
-
     List<Answer> answers;
 
-    public ShortAnswerQuestion(String question, char letter, List<Answer> answers) {
+    public MultipleChoiceQuestion(String question, List<Answer> answers) {
         this.question = question;
-        this.letter = letter;
         this.answers = answers;
     }
 
@@ -21,7 +19,7 @@ public class ShortAnswerQuestion extends Question {
     public char checkAnswer(String answerGiven) {
         for (Answer answer : answers
         ) {
-            return answer.checkAnswer(answerGiven) ? letter : ' ';
+            return answer.checkAnswer(answerGiven) ? answerGiven.charAt(0) : ' ';
         }
         return ' ';
     }

@@ -1,13 +1,15 @@
-package org.nl.parola.testcode;
+package org.nl.parola.Score;
 
 public class ScoreStrategyB implements IScoreCalculation {
     private static ScoreStrategyB instance;
-    public static ScoreStrategyB getInstance(){
-        if(instance == null){
+
+    public static ScoreStrategyB getInstance() {
+        if (instance == null) {
             instance = new ScoreStrategyB();
         }
         return instance;
     }
+
     /**
      * {@inheritDoc}
      * Calculates the score for an advanced player

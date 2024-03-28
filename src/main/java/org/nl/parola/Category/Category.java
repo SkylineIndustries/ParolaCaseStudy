@@ -1,4 +1,4 @@
-package org.nl.parola.categorie;
+package org.nl.parola.Category;
 
 public class Category {
     private String email;

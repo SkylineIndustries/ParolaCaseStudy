@@ -1,4 +1,4 @@
-package org.nl.parola.vraag.antwoord;
+package org.nl.parola.Question.Answer;
 
 public class Answer {
 

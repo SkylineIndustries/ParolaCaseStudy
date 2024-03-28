@@ -1,7 +1,7 @@
-package org.nl.parola.rolBeheer;
+package org.nl.parola.RoleManagement;
 
 public abstract class UserFactory {
-    
+
     public abstract String getEmail();
 
     public abstract String getPassword();
