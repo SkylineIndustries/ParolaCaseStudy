@@ -1,17 +1,20 @@
 package org.nl.parola.Roles;
 
 
+import org.nl.parola.Score.IScoreCalculation;
+import org.nl.parola.Score.ScoreStrategyBeginning;
+
 public class User {
     private String email;
     private String password;
     private int credits;
-    private String isAdvanced;
+    private IScoreCalculation isAdvanced;
 
     public User(String email, String wachtwoord) {
         this.email = email;
         this.password = wachtwoord;
         this.credits = 1000;
-        this.isAdvanced = "Amateur";
+        this.isAdvanced = new ScoreStrategyBeginning();
     }
 
     public void reduceerCredits() {
@@ -42,11 +45,11 @@ public class User {
         this.credits = credits;
     }
 
-    public String getIsAdvanced() {
+    public IScoreCalculation getIsAdvanced() {
         return isAdvanced;
     }
 
-    public void setIsAdvanced(String isAdvanced) {
+    public void setIsAdvanced(IScoreCalculation isAdvanced) {
         this.isAdvanced = isAdvanced;
     }
 }

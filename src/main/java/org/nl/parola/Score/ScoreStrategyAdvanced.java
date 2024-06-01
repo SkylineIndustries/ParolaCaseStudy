@@ -1,11 +1,11 @@
 package org.nl.parola.Score;
 
-public class ScoreStrategyB implements IScoreCalculation {
-    private static ScoreStrategyB instance;
+public class ScoreStrategyAdvanced implements IScoreCalculation {
+    private static ScoreStrategyAdvanced instance;
 
-    public static ScoreStrategyB getInstance() {
+    public static ScoreStrategyAdvanced getInstance() {
         if (instance == null) {
-            instance = new ScoreStrategyB();
+            instance = new ScoreStrategyAdvanced();
         }
         return instance;
     }

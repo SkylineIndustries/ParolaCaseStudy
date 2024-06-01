@@ -5,9 +5,9 @@ import org.nl.parola.External_Software.MockExternalSoftware;
 import org.nl.parola.MOCKDATA.Timer;
 import org.nl.parola.Roles.User;
 import org.nl.parola.Score.IScoreCalculation;
-import org.nl.parola.Score.ScoreStrategyA;
-import org.nl.parola.Score.ScoreStrategyB;
-import org.nl.parola.Score.ScoreStrategyC;
+import org.nl.parola.Score.ScoreStrategyAmateur;
+import org.nl.parola.Score.ScoreStrategyAdvanced;
+import org.nl.parola.Score.ScoreStrategyBeginning;
 import org.nl.parola.Question.Question;
 
 import java.util.ArrayList;
@@ -75,7 +75,7 @@ public class Quiz {
      * @return the score that the user got.
      */
     public int calculateScore(String playerName, String word) {
-        String playerDifficulty = "";
+        IScoreCalculation playerDifficulty;
         User currentUser = getCurrentUser(playerName);
         if (currentUser == null) {
             return 0;
@@ -83,7 +83,7 @@ public class Quiz {
         playerDifficulty = currentUser.getIsAdvanced();
         word = checkLegitimateWord(word);
         Timer.stopTimer();
-        return calculateScore(deterimeScoreStrategy(playerDifficulty), word);
+        return calculateScore(playerDifficulty, word);
     }
 
     private String checkLegitimateWord(String word) {
@@ -93,14 +93,6 @@ public class Quiz {
             return "";
         }
         return word;
-    }
-
-    private IScoreCalculation deterimeScoreStrategy(String playerDifficulty) {
-        return switch (playerDifficulty) {
-            case "Amateur" -> ScoreStrategyA.getInstance();
-            case "Geavanceerd" -> ScoreStrategyB.getInstance();
-            default -> ScoreStrategyC.getInstance();
-        };
     }
 
     private int calculateScore(IScoreCalculation scoreCalculation, String word) {
