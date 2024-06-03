@@ -7,6 +7,8 @@ import java.util.List;
 
 public class MultipleChoiceQuestion extends Question {
 
+    ILetterCalculation letterCalculation = new LetterStrategyRandomLetter();
+
     String question;
     List<Answer> answers;
 
@@ -19,7 +21,7 @@ public class MultipleChoiceQuestion extends Question {
     public char checkAnswer(String answerGiven) {
         for (Answer answer : answers
         ) {
-            return answer.checkAnswer(answerGiven) ? answerGiven.charAt(0) : ' ';
+            return answer.checkAnswer(answerGiven) ? letterCalculation.getLetter(question) : ' ';
         }
         return ' ';
     }
