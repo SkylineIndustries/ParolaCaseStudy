@@ -10,9 +10,6 @@ public class QuizUserHistory {
 
     private static QuizUserHistory instance;
     private int score;
-    private StringBuilder letters;
-    private int currentQuestion;
-    private int numberOfQuestionsCorrect;
     private User currentUser;
     private IPlayQuiz iPlayQuiz;
     private List<User> users;
@@ -28,9 +25,6 @@ public class QuizUserHistory {
         iPlayQuiz = MockDatabase.getQuiz(userName);
     }
 
-    public void saveQuizData() {
-    }
-
     public void startQuiz(String playerName) {
         if (playerName == null) {
             return;
@@ -42,18 +36,27 @@ public class QuizUserHistory {
     }
 
     public String nextQuestion(String playerName) {
+        if(playerName.isEmpty()){
+            return "";
+        }
         return iPlayQuiz.nextQuestion();
     }
 
     public void processAnswer(String playerName, String answer) {
+        if(playerName.isEmpty()){
+            return;
+        }
         iPlayQuiz.processAnswer(answer);
     }
 
     public boolean quizFinished(String playerName) {
-        return iPlayQuiz.quizFinished();
+        return iPlayQuiz.quizFinished() && !playerName.isEmpty();
     }
 
     public String getLettersForRightAnswers(String playerName) {
+        if(playerName.isEmpty()){
+            return "";
+        }
         return iPlayQuiz.getLettersForRightAnswer();
     }
 
@@ -61,14 +64,21 @@ public class QuizUserHistory {
         if (playerName == null) {
             return 0;
         }
-        return iPlayQuiz.calculateScore(word, MockDatabase.getUser(playerName).getIsAdvanced());
+        this.score = iPlayQuiz.calculateScore(word, MockDatabase.getUser(playerName).getIsAdvanced());
+        saveQuizData();
+        return this.score;
+    }
+
+    public void saveQuizData() {
+        MockDatabase.saveQuizData(score, currentUser, iPlayQuiz);
     }
 
     public void setUsers(String playerName) {
-        if (this.users.isEmpty()) {
+        if (this.users == null) {
             this.users = new ArrayList<>();
         }
-        this.users.add(MockDatabase.getUser(playerName));
+        currentUser = MockDatabase.getUser(playerName);
+        this.users.add(currentUser);
     }
 }
 

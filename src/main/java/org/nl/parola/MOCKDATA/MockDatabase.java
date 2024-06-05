@@ -1,6 +1,7 @@
 package org.nl.parola.MOCKDATA;
 
 import org.nl.parola.Question.Answer.Answer;
+import org.nl.parola.Quiz.IPlayQuiz;
 import org.nl.parola.Quiz.Quiz;
 import org.nl.parola.Roles.User;
 import org.nl.parola.Question.MultipleChoiceQuestion;
@@ -38,5 +39,9 @@ public class MockDatabase {
       */
     private static Quiz determineQuiz(List<Quiz> quizList, String user){
         return quizList.get(0);
+    }
+
+    public static void saveQuizData(int score, User user, IPlayQuiz quiz){
+        //Mock saving data to DB
     }
 }
