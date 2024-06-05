@@ -17,7 +17,7 @@ public class User {
         this.isAdvanced = new ScoreStrategyBeginning();
     }
 
-    public void reduceerCredits() {
+    public void reduceCredits() {
         this.credits = credits - 40;
     }
 
