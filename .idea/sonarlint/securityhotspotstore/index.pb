@@ -5,8 +5,6 @@ Z
 *src/main/java/org/nl/parola/quiz/Quiz.java,a\e\ae7ac7a6cdcd43541a595b4650d35bfb0b9c90de
 Å
 Q.idea/sonarlint/securityhotspotstore/a/e/ae7ac7a6cdcd43541a595b4650d35bfb0b9c90de,4\4\44fc28b1f4920c4bd4a0fe8276f41132f79c6c55
-Å
-Q.idea/sonarlint/securityhotspotstore/0/8/0864368cd83db47ea0f6b32e0eb0c68d77f1c610,8\e\8e50853558b7165a538cc92e4140a1f463c0daeb
 S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
 w
@@ -23,8 +21,6 @@ Z
 *src/main/java/org/nl/parola/Quiz/Quiz.java,a\6\a617d747be99a625b4b2c86f7d94cbedbb7f0273
 l
 <src/main/java/org/nl/parola/Question/ILetterCalculation.java,6\c\6c404a61fdef5534429b0f9b7235855a4dc755f5
-z
-Jsrc/main/java/org/nl/parola/Question/Answer/LetterStrategyFirstLetter.java,b\f\bfdb5ae02d3a2da183cd045ab6dce3f3ecdcc0cf
 s
 Csrc/main/java/org/nl/parola/Question/LetterStrategyFirstLetter.java,e\a\ea3c9f65aa2044a3c99c093212a91e5f6afa6afd
 t
@@ -33,3 +29,5 @@ p
 @src/main/java/org/nl/parola/Question/MultipleChoiceQuestion.java,0\3\03b84c64f6a55f8d218d16859d7f507c1bdc379c
 m
 =src/main/java/org/nl/parola/Question/ShortAnswerQuestion.java,8\8\88c6a990d74f3f121c6fea30c813bbd8d40301df
+b
+2src/main/java/org/nl/parola/Question/Question.java,3\f\3f2fe9769cac33cbb24c0e1c978929cfb3b11156

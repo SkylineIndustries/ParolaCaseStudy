@@ -1,8 +1,12 @@
 package org.nl.parola.Question;
 
+import java.util.Random;
+
 public class LetterStrategyRandomLetter implements ILetterCalculation {
 
-    public char getLetter(String question) {
-        return question.substring((int) (Math.random() * question.length()), (int) (Math.random() * question.length() + 1)).charAt(0);
+    public char getLetter(String answer) {
+        Random random = new Random();
+        int index = random.nextInt(answer.length());
+        return answer.charAt(index);
     }
 }

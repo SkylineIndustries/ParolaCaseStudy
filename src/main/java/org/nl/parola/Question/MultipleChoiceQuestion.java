@@ -7,23 +7,22 @@ import java.util.List;
 
 public class MultipleChoiceQuestion extends Question {
 
-    ILetterCalculation letterCalculation = new LetterStrategyRandomLetter();
+    ILetterCalculation letterCalculation = new LetterStrategyFirstLetter();
 
     String question;
-    List<Answer> answers;
+    List<Answer> wrongAnswers;
 
-    public MultipleChoiceQuestion(String question, List<Answer> answers) {
+    Answer rightAnswer;
+
+    public MultipleChoiceQuestion(String question, List<Answer> answers, Answer rightAnswer) {
         this.question = question;
-        this.answers = answers;
+        this.wrongAnswers = answers;
+        this.rightAnswer = rightAnswer;
     }
 
     @Override
     public char checkAnswer(String answerGiven) {
-        for (Answer answer : answers
-        ) {
-            return answer.checkAnswer(answerGiven) ? letterCalculation.getLetter(question) : ' ';
-        }
-        return ' ';
+            return rightAnswer.checkAnswer(answerGiven) ? letterCalculation.getLetter(question) : ' ';
     }
 
     @Override

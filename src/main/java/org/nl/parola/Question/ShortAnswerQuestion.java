@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ShortAnswerQuestion extends Question {
 
-    ILetterCalculation letterCalculation = new LetterStrategyFirstLetter();
+    ILetterCalculation letterCalculation = new LetterStrategyRandomLetter();
     String question;
 
     List<Answer> answers;
