@@ -1,6 +1,6 @@
-package org.nl.parola.MOCKDATA;
+package org.nl.parola.Quiz;
 
-import org.nl.parola.Quiz.IPlayQuiz;
+import org.nl.parola.MOCKDATA.MockDatabase;
 import org.nl.parola.Roles.User;
 
 import java.util.ArrayList;

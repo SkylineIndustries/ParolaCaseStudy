@@ -1,7 +1,7 @@
 package org.nl;
 
 
-import org.nl.parola.MOCKDATA.QuizUserHistory;
+import org.nl.parola.Quiz.QuizUserHistory;
 
 
 public class ParolaController {
