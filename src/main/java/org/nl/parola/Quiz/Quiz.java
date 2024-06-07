@@ -3,92 +3,63 @@ package org.nl.parola.Quiz;
 import org.nl.parola.External_Software.External_Software;
 import org.nl.parola.External_Software.MockExternalSoftware;
 import org.nl.parola.MOCKDATA.Timer;
-import org.nl.parola.Roles.User;
-import org.nl.parola.Score.IScoreCalculation;
-import org.nl.parola.Score.ScoreStrategyAmateur;
-import org.nl.parola.Score.ScoreStrategyAdvanced;
-import org.nl.parola.Score.ScoreStrategyBeginning;
 import org.nl.parola.Question.Question;
+import org.nl.parola.Score.IScoreCalculation;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class Quiz {
-    public List<User> user = new ArrayList<>();
-    private int answerCount = 0;
-    private StringBuilder letters = new StringBuilder();
+public class Quiz implements IPlayQuiz {
     private final List<Question> questions;
+    private StringBuilder letters = new StringBuilder();
+    private int answerCount = 0;
     private Question currentQuestion;
     private int questionsCorrect;
 
-    public Quiz(User user, List<Question> questions) {
-        this.user.add(user);
+    public Quiz(List<Question> questions) {
         this.questions = questions;
     }
 
-    public void startQuiz(String playername) {
+    public void startQuiz() {
         Timer.startTimer();
-        User currentUser = getCurrentUser(playername);
-        if (currentUser == null) {
-            return;
-        }
-        currentUser.reduceerCredits();
     }
 
-    public String nextQuestion(String playername) {
-        if (getCurrentUser(playername) != null) {
-            currentQuestion = questions.get(answerCount);
-            return currentQuestion.getQuestion();
-        }
-        return "";
+    public String nextQuestion() {
+        currentQuestion = questions.get(answerCount);
+        return currentQuestion.getQuestion();
     }
 
-    public void processAnswer(String playername, String answer) {
-        if (getCurrentUser(playername) != null) {
-            letters.append(currentQuestion.checkAnswer(answer));
-            answerCount++;
-        }
+    public void processAnswer(String answer) {
+        letters.append(currentQuestion.checkAnswer(answer));
+        answerCount++;
     }
 
-    public boolean quizFinished(String playername) {
-        if (getCurrentUser(playername) != null) {
-            return answerCount == 8;
-        }
-        return false;
+    public boolean quizFinished() {
+        return answerCount == 8;
     }
 
-    public String getLettersForRightAnswers(String playername) {
+    public String getLettersForRightAnswer() {
         String lettersQuiz = letters.toString().replaceAll("\\s", "");
         questionsCorrect = lettersQuiz.length();
-        if (getCurrentUser(playername) != null) {
-            return lettersQuiz.toLowerCase();
-        }
-        return "";
+        return lettersQuiz.toLowerCase();
     }
 
     /**
      * This method determines what the status of the user is and calculates a score based on that information.
      *
-     * @param playerName name of the user.
-     * @param word       word that has been given as an answer.
+     * @param advancementUser advancement of the user.
+     * @param word            word that has been given as an answer.
      * @return the score that the user got.
      */
-    public int calculateScore(String playerName, String word) {
-        IScoreCalculation playerDifficulty;
-        User currentUser = getCurrentUser(playerName);
-        if (currentUser == null) {
-            return 0;
-        }
-        playerDifficulty = currentUser.getIsAdvanced();
+    public int calculateScore(String word, IScoreCalculation advancementUser) {
         word = checkLegitimateWord(word);
         Timer.stopTimer();
-        return calculateScore(playerDifficulty, word);
+        return calculateScore(advancementUser, word);
     }
 
     private String checkLegitimateWord(String word) {
         External_Software external_software = new MockExternalSoftware();
-        Pattern pattern = Pattern.compile("[" + letters.toString() + "]+");
+        Pattern pattern = Pattern.compile("[" + letters + "]+");
         if (!external_software.isCorrectWord(word) || !word.matches(pattern.pattern())) {
             return "";
         }
@@ -97,24 +68,6 @@ public class Quiz {
 
     private int calculateScore(IScoreCalculation scoreCalculation, String word) {
         return scoreCalculation.calculateScore(getTime(), word, questionsCorrect);
-    }
-
-    /**
-     * This method returns the current user of the quiz. If no user has been found, it returns null.
-     * This should be handled using exception handling, however due to the scope of the project/case study, this is not needed.
-     * You could also add the player to the quiz if a player is not found, but since there is no DB, this will not be done.
-     *
-     * @param playername name of the current player of the quiz.
-     * @return the user from the list of users that plays or has played the quiz.
-     */
-    private User getCurrentUser(String playername) {
-        for (User userQuiz : this.user
-        ) {
-            if (userQuiz.getEmail().equals(playername)) {
-                return userQuiz;
-            }
-        }
-        return null;
     }
 
     public int getTime() {

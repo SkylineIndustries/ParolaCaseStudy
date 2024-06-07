@@ -12,6 +12,10 @@ public class Timer {
     public static void stopTimer() {
         currentTime = System.currentTimeMillis();
     }
+    public static void resetTimer() {
+        currentTime = 0;
+        previousTime = 0;
+    }
 
     /**
      * Gets the difference in time for the quiz.

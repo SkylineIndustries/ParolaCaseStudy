@@ -1,12 +1,14 @@
 package org.nl.parola.MOCKDATA;
 
 import org.nl.parola.Question.Answer.Answer;
+import org.nl.parola.Quiz.IPlayQuiz;
 import org.nl.parola.Quiz.Quiz;
 import org.nl.parola.Roles.User;
 import org.nl.parola.Question.MultipleChoiceQuestion;
 import org.nl.parola.Question.Question;
 import org.nl.parola.Question.ShortAnswerQuestion;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MockDatabase {
@@ -23,7 +25,23 @@ public class MockDatabase {
     static List<Question> questions = List.of(question, question2, question3, question4, question5, question6, question7, question8);
 
     public static Quiz getQuiz(String user) {
-        User user1 = new User(user, user);
-        return new Quiz(user1, questions);
+        Quiz quiz = new Quiz(questions);
+        List<Quiz> quizList = new ArrayList<>();
+        quizList.add(quiz);
+        return determineQuiz(quizList, user);
+    }
+    public static User getUser(String playerName) {
+        return new User(playerName, playerName);
+    }
+
+    /**
+     *     This would retrieve a quiz based on the quizzes the user had played and the quizzes that are left
+      */
+    private static Quiz determineQuiz(List<Quiz> quizList, String user){
+        return quizList.get(0);
+    }
+
+    public static void saveQuizData(int score, User user, IPlayQuiz quiz){
+        //Mock saving data to DB
     }
 }
