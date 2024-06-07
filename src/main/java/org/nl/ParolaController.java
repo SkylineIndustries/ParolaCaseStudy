@@ -1,11 +1,12 @@
 package org.nl;
 
-import org.nl.parola.MOCKDATA.MockDatabase;
-import org.nl.parola.Quiz.Quiz;
+
+import org.nl.parola.Quiz.QuizUserHistory;
+
 
 public class ParolaController {
     private static ParolaController instance;
-    Quiz quiz;
+    QuizUserHistory quizUserHistory;
 
     public static ParolaController getInstance() {
         if (instance == null) {
@@ -15,27 +16,27 @@ public class ParolaController {
     }
 
     public void startQuiz(String playername) {
-        this.quiz = MockDatabase.getQuiz(playername);
-        quiz.startQuiz(playername);
+        quizUserHistory = QuizUserHistory.getInstance();
+        quizUserHistory.startQuiz(playername);
     }
 
     public String nextQuestion(String playername) {
-        return quiz.nextQuestion(playername);
+        return quizUserHistory.nextQuestion(playername);
     }
 
     public void processAnswer(String playername, String answer) {
-        this.quiz.processAnswer(playername, answer);
+        this.quizUserHistory.processAnswer(playername, answer);
     }
 
     public boolean quizFinished(String playername) {
-        return quiz.quizFinished(playername);
+        return quizUserHistory.quizFinished(playername);
     }
 
     public String getLettersForRightAnswers(String playername) {
-        return quiz.getLettersForRightAnswers(playername);
+        return quizUserHistory.getLettersForRightAnswers(playername);
     }
 
     public int calculateScore(String playername, String word) {
-        return quiz.calculateScore(playername, word);
+        return quizUserHistory.calculateScore(playername, word);
     }
 }

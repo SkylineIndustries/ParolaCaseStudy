@@ -17,38 +17,15 @@ public class User {
         this.isAdvanced = new ScoreStrategyBeginning();
     }
 
-    public void reduceerCredits() {
+    public void reduceCredits() {
         this.credits = credits - 40;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getCredits() {
-        return credits;
-    }
-
-    public void setCredits(int credits) {
-        this.credits = credits;
     }
 
     public IScoreCalculation getIsAdvanced() {
         return isAdvanced;
     }
 
+    // Can be called to change advancement level of user
     public void setIsAdvanced(IScoreCalculation isAdvanced) {
         this.isAdvanced = isAdvanced;
     }
