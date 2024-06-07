@@ -12,6 +12,8 @@ public class MultipleChoiceQuestion extends Question {
     String question;
     List<Answer> wrongAnswers;
 
+    boolean active;
+
     Answer rightAnswer;
 
     public MultipleChoiceQuestion(String question, List<Answer> answers, Answer rightAnswer) {

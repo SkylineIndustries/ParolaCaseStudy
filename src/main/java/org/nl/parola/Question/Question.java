@@ -4,6 +4,7 @@ public abstract class Question {
 
     String question;
 
+    boolean active;
 
     public char checkAnswer(String answer) {
         return 0;
