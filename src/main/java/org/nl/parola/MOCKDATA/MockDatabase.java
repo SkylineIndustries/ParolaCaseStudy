@@ -7,6 +7,8 @@ import org.nl.parola.Roles.User;
 import org.nl.parola.Question.MultipleChoiceQuestion;
 import org.nl.parola.Question.Question;
 import org.nl.parola.Question.ShortAnswerQuestion;
+import org.nl.parola.Quiz.Quiz;
+import org.nl.parola.Roles.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.List;
 public class MockDatabase {
 
     static Question question = new ShortAnswerQuestion("Wat is kaas in het engels?", List.of(new Answer("cheese")));
-    static Question question2 = new MultipleChoiceQuestion("Hoe noem je een koe in het engels? A: cow, B: chicken, C: horse, D: dog", List.of(new Answer("a")));
+    static Question question2 = new MultipleChoiceQuestion("Hoe noem je een koe in het engels? A: cow, B: chicken, C: horse, D: dog", List.of(new Answer("b"), new Answer("c"), new Answer("d")), new Answer("a"));
     static Question question3 = new ShortAnswerQuestion("Wat is de Engelse vertaling van 'water'?", List.of(new Answer("water")));
     static Question question4 = new ShortAnswerQuestion("Wat is de Engelse vertaling van 'boom'?", List.of(new Answer("tree")));
     static Question question5 = new ShortAnswerQuestion("Wat is de Engelse vertaling van 'huis'?", List.of(new Answer("house")));
