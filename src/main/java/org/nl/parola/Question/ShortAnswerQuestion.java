@@ -11,6 +11,8 @@ public class ShortAnswerQuestion extends Question {
 
     List<Answer> answers;
 
+    boolean active;
+    
     public ShortAnswerQuestion(String question, List<Answer> answers) {
         this.question = question;
         this.answers = answers;
